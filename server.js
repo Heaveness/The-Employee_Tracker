@@ -23,11 +23,10 @@ const connection = mysql.createConnection(
 	console.log(`Connected to the employee_db database.`)
 );
 
-// Function to start the employee tracker application.
-function startTracker() {
-	// Title text box.
-	const title = 'Employee Tracker';
+// Title text box.
+const title = 'Employee Tracker';
 
+function displayTitle() {
 	const line = '─'.repeat(title.length + 4);
 	const spaces = ' '.repeat(title.length + 2);
   
@@ -36,6 +35,12 @@ function startTracker() {
 	console.log(`│  ${title}  │`);
 	console.log(`│${spaces}  │`);
 	console.log(`└${line}┘`);
+}
+
+
+// Function to start the employee tracker application.
+function startTracker() {
+	displayTitle();
 	console.log('\nWelcome to the Employee Tracker application!\n');
 
   	// Prompts the user with options through inquirer.
