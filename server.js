@@ -185,7 +185,69 @@ function addDepartment() {
 
 // Function to add a role into the database.
 function addRole() {
+	inquirer
+    .prompt([
+		{
+			type: 'input',
+			name: 'title',
+			message: "Enter the role's title:",
+		},
+		{
+			type: 'number',
+			name: 'salary',
+			message: "Enter the role's salary:",
+		},
+		{
+			type: 'input',
+			name: 'department',
+			message: "Enter the role's department:",
+		},
+    ])
+    .then((answers) => {
+		const { title, salary, department } = answers;
 
+		connection.query(
+			'SELECT id FROM department WHERE name = ?',
+			[department],
+			(err, results) => {
+			// If statement for any potential errors.
+			if (err) {
+				console.error('Error retrieving department:', err);
+				startTracker();
+				return;
+			}
+			// If statement for any potential errors.
+			if (results.length === 0) {
+				console.log('Department not found. Please add the department first.');
+				startTracker();
+				return;
+			}
+
+			const departmentId = results[0].id;
+
+			connection.query(
+				'INSERT INTO role SET ?',
+				{ title, salary, department_id: departmentId },
+				(err) => {
+				// If statement for any potential errors.
+				if (err) {
+					console.error('Error adding role:', err);
+				} 
+				else {
+					console.log('Role added successfully!');
+				}
+
+				startTracker();
+				}
+			);
+			}
+		);
+    })
+	// Catch function for any potential errors.
+    .catch((error) => {
+		console.log('An error occurred:', error);
+		startTracker();
+    });
 }
 
 // Function to add an employee into the database.
