@@ -252,7 +252,53 @@ function addRole() {
 
 // Function to add an employee into the database.
 function addEmployee() {
+	inquirer
+    .prompt([
+		{
+			type: 'input',
+			name: 'firstName',
+			message: "Enter the employee's first name:",
+		},
+		{
+			type: 'input',
+			name: 'lastName',
+			message: "Enter the employee's last name:",
+		},
+		{
+			type: 'number',
+			name: 'roleId',
+			message: "Enter the employee's role ID:",
+		},
+		{
+			type: 'number',
+			name: 'managerId',
+			message: "Enter the employee's manager ID:",
+		},
+    ])
+    .then((answers) => {
+		const { firstName, lastName, roleId, managerId } = answers;
 
+		connection.query(
+			'INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)',
+			[firstName, lastName, roleId, managerId],
+			(err) => {
+			// If statement for any potential errors.
+			if (err) {
+				console.error('Error adding employee:', err);
+			} 
+			else {
+				console.log('Employee added successfully!');
+			}
+
+			startTracker();
+			}
+		);
+    })
+	// Catch function for any potential errors.
+    .catch((error) => {
+		console.log('An error occurred:', error);
+		startTracker();
+    });
 }
 
 // Function to update employee role from the database.
