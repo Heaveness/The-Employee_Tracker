@@ -1,0 +1,30 @@
+{
+  "name": "the-employee_tracker",
+  "version": "1.0.0",
+  "description": "A comprehensive app for tracking employees within departments, roles, &  individuals then add them to whichever category deemed necessary and have it updated into the database for future searches.",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Heaveness/The-Employee_Tracker.git"
+  },
+  "keywords": [
+    "employee",
+    "tracker",
+    "app"
+  ],
+  "author": "Heaveness",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Heaveness/The-Employee_Tracker/issues"
+  },
+  "homepage": "https://github.com/Heaveness/The-Employee_Tracker#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "inquirer": "^8.2.4",
+    "mysql2": "^3.3.3"
+  }
+}
