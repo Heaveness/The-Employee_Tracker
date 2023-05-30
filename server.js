@@ -116,7 +116,23 @@ function viewAllDepartments() {
 
 // Function to view all roles from the database.
 function viewAllRoles() {
-
+	connection.query(
+		'SELECT role.id, role.title, role.salary, department.name AS department FROM role LEFT JOIN department ON role.department_id = department.id',
+		(err, roles) => {
+			// If statement for any potential errors.
+			if (err) {
+				console.error('Error retrieving roles:', err);
+				startTracker();
+				return;
+			}
+		
+			console.log('Roles:');
+			console.table(roles);
+		
+			startTracker();
+		}
+	);
+}
 }
 
 // Function to view all employees from the database.
