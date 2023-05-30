@@ -100,7 +100,18 @@ function startTracker() {
 
 // Function to view all departments from the database.
 function viewAllDepartments() {
+    connection.query('SELECT * FROM department', (err, departments) => {
+		if (err) {
+		  	console.error('Error retrieving departments:', err);
+		  	startTracker();
+		  	return;
+		}
 
+		console.log('Departments:');
+		console.table(departments);
+	
+		startTracker();
+	});
 }
 
 // Function to view all roles from the database.
