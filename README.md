@@ -40,7 +40,7 @@ Use this command to test: <br>
 node server.js <br>
 
 ## Links
-**Walkthrough:** [Link to the walkthrough video!]() <br>
+**Walkthrough:** [Link to the walkthrough video!](https://drive.google.com/file/d/1ZJUo1B3Wwn-GKLDrFiPXaHkDvxUOvK6G/view) <br>
 **Github Repo:** [Link to Github repository!](https://github.com/Heaveness/The-Employee_Tracker) <br>
 
 ## Previews
