@@ -133,11 +133,29 @@ function viewAllRoles() {
 		}
 	);
 }
-}
 
 // Function to view all employees from the database.
 function viewAllEmployees() {
+	const query =
+    'SELECT employee.id, employee.first_name, employee.last_name, role.title, department.name AS department, role.salary, CONCAT(manager.first_name, " ", manager.last_name) AS manager ' +
+    'FROM employee ' +
+    'LEFT JOIN role ON employee.role_id = role.id ' +
+    'LEFT JOIN department ON role.department_id = department.id ' +
+    'LEFT JOIN employee AS manager ON employee.manager_id = manager.id';
 
+  	connection.query(query, (err, employees) => {
+		// If statement for any potential errors.
+		if (err) {
+			console.error('Error retrieving employees:', err);
+			startTracker();
+			return;
+		}
+
+    	console.log('Employees:');
+    	console.table(employees);
+
+    	startTracker();
+    });
 }
 
 // Function to add a department into the database.
