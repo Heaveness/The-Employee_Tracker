@@ -303,7 +303,42 @@ function addEmployee() {
 
 // Function to update employee role from the database.
 function updateEmployeeRole() {
+	inquirer
+    .prompt([
+		{
+			type: 'number',
+			name: 'employeeId',
+			message: "Enter the ID of the employee you want to update:",
+		},
+		{
+			type: 'number',
+			name: 'roleId',
+			message: "Enter the new role ID for the employee:",
+		},
+    ])
+    .then((answers) => {
+		const { employeeId, roleId } = answers;
 
+		connection.query(
+			'UPDATE employee SET role_id = ? WHERE id = ?',
+			[roleId, employeeId],
+			(err) => {
+			// If statement for any potential errors.
+			if (err) {
+				console.error('Error updating employee role:', err);
+			} 
+			else {
+				console.log('Employee role updated successfully!');
+			}
+			startTracker();
+			}
+		);
+    })
+	// Catch function for any potential errors.
+    .catch((error) => {
+		console.log('An error occurred:', error);
+		startTracker();
+    });
 }
 
 // Establish database connection.
