@@ -26,6 +26,7 @@ const connection = mysql.createConnection(
 // Title text box.
 const title = 'Employee Tracker';
 
+// Function to display the title box during main menu.
 function displayTitle() {
 	const line = '─'.repeat(title.length + 4);
 	const spaces = ' '.repeat(title.length + 2);
@@ -37,11 +38,14 @@ function displayTitle() {
 	console.log(`└${line}┘`);
 }
 
-
 // Function to start the employee tracker application.
 function startTracker() {
-	displayTitle();
-	console.log('\nWelcome to the Employee Tracker application!\n');
+	// Show the title text box only if it hasn't been displayed yet
+	if (!global.titleDisplayed) {
+		displayTitle();
+		console.log('\nWelcome to the Employee Tracker application!\n');
+		global.titleDisplayed = true;
+	}
 
   	// Prompts the user with options through inquirer.
 	inquirer
