@@ -160,7 +160,27 @@ function viewAllEmployees() {
 
 // Function to add a department into the database.
 function addDepartment() {
-
+	inquirer
+    .prompt([
+		{
+			type: 'input',
+			name: 'departmentName',
+			message: 'Enter the name of the department:',
+		},
+    ])
+    .then((answer) => {
+		const query = 'INSERT INTO department (name) VALUES (?)';
+		connection.query(query, answer.departmentName, (err, res) => {
+		  if (err) throw err;
+		  console.log('Department added successfully!');
+		  startTracker();
+		});
+	})
+	// Catch function for any potential errors.
+    .catch((error) => {
+		console.log('An error occurred:', error);
+		startTracker();
+    });
 }
 
 // Function to add a role into the database.
@@ -177,3 +197,21 @@ function addEmployee() {
 function updateEmployeeRole() {
 
 }
+
+// Establish database connection.
+connection.connect((err) => {
+	// If statement for any potential errors.
+	if (err) {
+		console.error('Error connecting to the database:', err);
+		return;
+	}
+	console.log('Connected to the database.');
+  
+	// Call the startTracker() function to prompt the user with options.
+	startTracker();
+});
+
+// Start the server.
+app.listen(PORT, () => {
+	console.log(`Server running on port ${PORT}`);
+});
