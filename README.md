@@ -23,8 +23,9 @@ Give it a try today! <br>
 Follow these instructions: <br>
 1. Git clone this repository. <br>
 2. Install [Node](https://nodejs.org/en). <br>
-3. Install necessary modules by using command: npm install express mysql2 inquirer <br>
-4. Use any git terminal like Git Bash or Visual Studio Code. If you want to start the server locally through a command: node server.js <br>
+3. Install necessary modules by using command: npm install <br>
+4. Setup SQL database using schema.sql file. <br>
+5. Use any git terminal like Git Bash or Visual Studio Code. If you want to start the server locally through a command: node server.js <br>
   
 ## Usage
 Used for writing and saving employee IDs into a database for multiple uses. The code is used to demonstrate the usage of SQL to create a database.
